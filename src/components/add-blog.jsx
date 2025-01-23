@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const AddBlog = () => {
     const { editBlogId, blogs } = useSelector((store) => store.blogs);
-    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
     const {register, handleSubmit, watch, formState: { errors }, reset, setValue } = useForm();
@@ -15,7 +14,6 @@ const AddBlog = () => {
         setValue("description", getBlogVal.body)
     }
     const onSubmitHandle = (data) => {
-        setLoading(true);
         // e.preventDefault();
         console.log("form submited : ", data);
         if(editBlogId === null){
@@ -28,7 +26,6 @@ const AddBlog = () => {
             dispatch(updateBlog(copyEditBlog));
         }
         reset();
-        setLoading(false);
     }
     // console.log(errors);
     // console.log(watch("title"));
